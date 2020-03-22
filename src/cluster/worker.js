@@ -8,13 +8,13 @@ process.on('message', message => {
   const { task } = message
   if (!task) return
   for (const file of task) {
-    const folder = 'uploads'
-    console.log({ file })
-    const avatar = file.split('/')[8]//8
-    console.log({ avatar })
-    Fal.compress(folder, avatar).then((file) => {
-      console.log({ filename: file })
-      Fal.add(file)
+    const str = file.split('/')
+    const avatar = str[8]
+    const folder = str[7]
+    Fal.compress(folder, avatar).then(file => {
+      const [ arr ] = file
+      const { destinationPath } = arr
+      Fal.add(destinationPath)
     })
   }
 })

@@ -21,7 +21,6 @@ const divide = array => {
   const results = []
   for (const worker of workers) {
     const task = tasks.pop()
-    console.log({ task })
     if (!task) return
     worker.send({ task })
 
