@@ -12,14 +12,14 @@ const workersCount = 8
 const defaultElementsByTask = 10
 
 const divide = array => {
-  console.log({ array })
+  //console.log({ array })
   const tasks = Util.chunkArray(array, defaultElementsByTask, workersCount)
-  console.log({ tasks })
+  //console.log({ tasks })
 
   for (let i = 0; i < cpuCount; i++) {
     const worker = cluster.fork()
 
-    console.log('Started worker:', worker.process.pid)
+    //console.log('Started worker:', worker.process.pid)
     workers.push(worker)
   }
 
@@ -28,9 +28,9 @@ const divide = array => {
   workers.forEach(worker => {
 
     const task = tasks.pop()
-    console.log('INSIDE WORKERSFOREACH - SENDING TASKS')
+    //console.log('INSIDE WORKERSFOREACH - SENDING TASKS')
     if (!task) return
-    console.log({ workertaskMaster: task })
+    //console.log({ workertaskMaster: task })
 
     worker.send({ task })
 

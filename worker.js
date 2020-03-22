@@ -9,22 +9,25 @@ process.on('message', message => {
   //for (let i = 0; i < 10; i++) fs.readdirSync(__dirname)
   //process.on('start', Tool.add)
 
-  console.log({ workertasReceived: message })
+  //console.log({ workertasReceived: message })
 
   if (!message.task) return
 
-  message.task.forEach(file => {
-    console.log({ file })
+  message.task.map(async file => {
+    //console.log({ file })
 
-    console.log('INSIDE WORKER - START')
+    //console.log('INSIDE WORKER - START')
     const avatar = file.split('/')[7]
 
-    console.log('COMPRESS GO')
-    Fal.compress('uploads', avatar)
-    setTimeout(() => Fal.add(file) ,1000)
+    //console.log('COMPRESS GO')
+    Fal.compress('uploads', avatar).then(data => {
+      Fal.add(file)
+    })
+
+    //setTimeout(() => Fal.add(file), 1000)
     //for (let i = 0; i < 1000; i++) fs.readdirSync(__dirname)
-    console.log({ file, avatar })
-    console.log({ ava: avatar })
+    //console.log({ file, avatar })
+    //console.log({ ava: avatar })
 
     //setTimeout(() => process.emit('start', file), 100)
     //ee.on('start', Tool.add)
