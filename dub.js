@@ -27,14 +27,11 @@ const storage = multer.diskStorage({
 })
 
 const checkFileType = (file, cb) => {
-  let { originalname, mimetype } = file
-  const filetypes = /png|jpeg/ // Allowed extensions
-  //console.log({ filetypes, mimetype })
-  const ext = path.extname(originalname)   // Check ext
-  const extname = filetypes.test(ext)// Check mimetype
-
+  const { originalname, mimetype } = file
+  const filetypes = /png|jpeg/
+  const ext = path.extname(originalname)
+  const extname = filetypes.test(ext)
   const mimetypeChecked = filetypes.test(mimetype)
-  console.log({ extname, ext, mimetypeChecked })
   if (mimetypeChecked && extname) return cb(null, true)
   return cb(new Error('Images Only!'))
 }
@@ -49,14 +46,11 @@ const upload = multer({
 
 app.post('/upload', upload.any(), async (req, res, next) => {
   const files = req.files
-  //console.log({ files })
   if (files) return res.send('Files uploaded')
   const error = new Error('Please upload a file')
-  //console.log({ status: error.httpStatusCode })
   error.httpStatusCode = 404
   return next(error)
 })
-
 
 async function main() {
   await Rebuild.checkErrs(__dirname)
