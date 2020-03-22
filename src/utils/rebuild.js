@@ -5,7 +5,7 @@ const path = require('path')
 const os = require('os')
 const cluster = require('cluster')
 
-const Master = require('./master')
+const Master = require('../cluster/master')
 
 const promisify = (func, args) => new Promise((resolve, reject) =>
   func.apply(null, [...args, (err, result) =>

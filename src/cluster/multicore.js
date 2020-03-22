@@ -2,5 +2,5 @@
 
 const cluster = require('cluster')
 
-if (cluster.isMaster) require('./dub.js')
+if (cluster.isMaster) require('../dub.js')
 require('./worker.js')

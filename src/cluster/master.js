@@ -6,7 +6,7 @@ const cluster = require('cluster')
 const cpuCount = os.cpus().length
 const workers = []
 
-const Util = require('./util')
+const Util = require('../utils/util')
 
 const workersCount = 8
 const defaultElementsByTask = 10
@@ -17,7 +17,7 @@ const divide = array => {
     const worker = cluster.fork()
     workers.push(worker)
   }
-  
+
   const results = []
   for (const worker of workers) {
     const task = tasks.pop()

@@ -35,7 +35,7 @@ cli.responders.start = function() {}
 cli.responders.stop = function() {}
 cli.responders.init = function() {}
 */
-cli.responders.start = () => require('./multicore')
+cli.responders.start = () => require('./src/cluster/multicore')
 cli.responders.stop = () => {}
 cli.responders.init = () => {}
 

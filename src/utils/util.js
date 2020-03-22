@@ -22,4 +22,4 @@ function chunkArray(arr, elementsByPart, clientsCount) {
   return tasks
 }
 
-module.exports.chunkArray = chunkArray
+module.exports.chunkArray = chunkArray 

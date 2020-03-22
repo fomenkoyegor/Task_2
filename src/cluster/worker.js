@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 const cluster = require('cluster')
-const Fal = require('./fal')
+const Fal = require('../utils/fal')
 
 process.on('message', message => {
   const { task } = message
@@ -10,6 +10,7 @@ process.on('message', message => {
   for (const file of task) {
     const folder = 'uploads'
     const avatar = file.split('/')[7]
+    console.log({ avatar })
     Fal.compress(folder, avatar).then(() => Fal.add(file))
   }
 })
