@@ -48,7 +48,7 @@ const divide = array => {
       }
     })
 
-    setTimeout(() => process.exit(1), 5000)
+    //setTimeout(() => process.exit(1), 5000)
   })
 }
 

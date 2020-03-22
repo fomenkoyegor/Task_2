@@ -21,12 +21,14 @@ function getItems(folder = __dirname) {
   return promisify(fs.readdir, [folder])
 }
 
-const compress = async (folder, avatar) => {
-    //console.log('COMPRIK')
+const compress = (folder, avatar) => {
+  console.log({ compare: `${__dirname}/images/${avatar}` })
     return imagemin([`${folder}/${avatar}`], {
       destination: 'images',
       plugins: [ imageminJpegtran(), imageminPngquant({ quality: [0.6, 0.8] }) ]
     })
+    //const compare = `${__dirname}/images/${avatar}`
+    //add(compare)
 }
 
 
@@ -36,18 +38,11 @@ const add = async imagePath => {
     'color' : 'rgb(154, 50, 46)',
     'dstPath' : `${imagePath}`
   }
-  //console.log({ path: imagePath })
-    //for (let i = 0; i < 10; i++) fs.readdirSync(__dirname)
-    fs.exists(imagePath, exists => {
-      //console.log({ exists }, 'EXISTS')
-      //console.log('WATERWARK BEFORE EXISTS')
-
-      if (!exists) return console.log('DO NOT ENTER')
-      //console.log('WATERWARK AFTER EXISTS')
-      //console.log({ iNSIDEWATERMARKPATH: imagePath, oPTIONS: options })
-      watermark.embedWatermark(imagePath, options)
-
-    })
+  fs.exists(imagePath, exists => {
+  console.log({ imagePath })
+  if (!exists) return console.log('DO NOT ENTER')
+  watermark.embedWatermark(imagePath, options)
+})
 }
 
 
