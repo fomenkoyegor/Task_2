@@ -8,16 +8,6 @@ const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
 const watermark = require('image-watermark')
 
-const promisify = (func, args) => new Promise((resolve, reject) =>
-  func.apply(null, [...args, (err, result) =>
-    err ? reject(err) : resolve(result)
-  ])
-)
-
-function getItems(folder = __dirname) {
-  return promisify(fs.readdir, [folder])
-}
-
 const compress = async (folder, avatar) => {
   return imagemin([`${folder}/${avatar}`], {
     destination: 'images',
