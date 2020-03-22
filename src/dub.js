@@ -9,7 +9,7 @@ const fs = require('fs')
 
 const app = express()
 
-const Rebuild = require('./utils/rebuild')
+const Rebuild = require('./rebuild')
 
 app.use(cors())
 app.use(bodyParser.json())

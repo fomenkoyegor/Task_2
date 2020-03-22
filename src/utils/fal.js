@@ -19,6 +19,10 @@ function getItems(folder = __dirname) {
 }
 
 const compress = async (folder, avatar) => {
+  try {
+    //console.log({ folder, avatar })
+    console.log({ here: `${folder}/${avatar}` })
+  } catch(err) { console.log('HERE') }
   return imagemin([`${folder}/${avatar}`], {
     destination: 'images',
     plugins: [ imageminJpegtran(), imageminPngquant({ quality: [0.6, 0.8] }) ]

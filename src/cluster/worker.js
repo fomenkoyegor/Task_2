@@ -9,8 +9,12 @@ process.on('message', message => {
   if (!task) return
   for (const file of task) {
     const folder = 'uploads'
-    const avatar = file.split('/')[7]
+    console.log({ file })
+    const avatar = file.split('/')[8]//8
     console.log({ avatar })
-    Fal.compress(folder, avatar).then(() => Fal.add(file))
+    Fal.compress(folder, avatar).then((file) => {
+      console.log({ filename: file })
+      Fal.add(file)
+    })
   }
 })
